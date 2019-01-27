@@ -6,8 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <a class="btn btn-primary"  href="{{ route('film') }}">Create new film</a>
-                    <a class="btn btn-primary"  href="{{ route('register') }}">Register employee</a>
+                    Dashboard
                 </div>
 
                 <div class="card-body">
@@ -18,6 +17,7 @@
                     @endif
 
                     <div>
+
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
                             <h5 class="card-title">Film title</h5>
@@ -25,7 +25,6 @@
                             <p class="card-text">Sponsor. City, Year of Production</p>
                             <a href="#" class="card-link">Card link</a>
                             <a href="#" class="card-link">Another link</a>
-                        </div>
                         </div>
                     </div>
                 </div>
