@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
 use App\User;
 use App\Role;
 
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -30,17 +33,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    protected $redirectTo = '/';
 
     /**
      * Get a validator for an incoming registration request.
@@ -71,10 +64,26 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-        $user
-            ->roles()
-            ->attach(Role::where('name', 'employee')->first());
+        if (Auth::user()->hasRole("admin")) {
+            $user
+                ->roles()
+                ->attach(Role::where('name', 'employee')->first());
+                return $user;
+        } else {
+            $user
+                ->roles()
+                ->attach(Role::where('name', 'client')->first());
+                return $user;
+        }
+    }
 
-        return $user;
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
     }
 }
