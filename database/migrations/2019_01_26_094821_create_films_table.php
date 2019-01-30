@@ -21,7 +21,7 @@ class CreateFilmsTable extends Migration
             $table->text('city');
             $table->text('theme');
             $table->char('year',4);
-            $table->integer('price');
+            $table->text('price');
             $table->timestamps();
         });
     }
