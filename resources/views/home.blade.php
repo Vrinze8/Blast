@@ -48,11 +48,12 @@
                     @else
                     <div class="jumbotron">
                         <h1 class="display-4">Hello, welcome to blast films!</h1>
-                        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured
-                            content or information.</p>
+                        <p class="lead">This is a simple web application for film management as part of
+                            CTT06105: Assignment.</p>
                         <hr class="my-4">
-                        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-                        <a class="btn btn-primary btn-lg" href="#" role="button">Login to proceed</a>
+                        <p>If your employee please proceed to login. For clients who want's to see blast films collection please register to proceed</p>
+                        <a class="btn btn-primary btn-lg" href="{{ route('login') }}" type="text" role="button">Login to proceed</a>
+                        <a class="btn btn-link btn-lg" href="{{ route('register') }}" role="button">Client registration </a>
                     </div>
                     @endauth
                 </div>
