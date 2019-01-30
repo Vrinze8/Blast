@@ -36,13 +36,19 @@
                                     {{ session('status') }}
                                 </div>
                             @endif
-                            <div class="card" style="width: 18rem;">
-                                <div class="card-body">
-                                    <h5 class="card-title">Film title</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">Producer subtitle</h6>
-                                    <p class="card-text">Sponsor. City, Year of Production</p>
+
+                            @foreach ($films as $film)
+                                <div class="card" style="width: 18rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ $film->title}}</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">Producer {{ $film->producer}}</h6>
+                                        <p class="card-text my-0">Sponsor(s): {{ $film->sponsor}}.</p>
+                                        <p class="card-text my-0">City : {{ $film->city}},</p>
+                                        <p class="card-text my-0"> Year of production: {{ $film->year}}</p>
+                                    </div>
                                 </div>
-                            </div>
+                            @endforeach
+
                         </div>
                     </div>
                     @else
